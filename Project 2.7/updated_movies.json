@@ -1,0 +1,92 @@
+[
+  {
+    "_id": {"$oid": "66db717c9116cedb152710bc"},
+    "title": "Inception",
+    "releaseYear": 2010,
+    "genre": {"name": "Sci-Fi", "description": "Science fiction movie"},
+    "director": {"name": "Christopher Nolan", "birthYear": 1970, "bio": "British-American director known for his complex storytelling and visually striking films."},
+    "rating": 8.8,
+    "description": "A mind-bending thriller about dream manipulation and corporate espionage."
+  },
+  {
+    "_id": {"$oid": "66db717c9116cedb152710bd"},
+    "title": "The Dark Knight",
+    "releaseYear": 2008,
+    "genre": {"name": "Action", "description": "Action thriller"},
+    "director": {"name": "Christopher Nolan", "birthYear": 1970, "bio": "British-American director known for his complex storytelling and visually striking films."},
+    "rating": 9,
+    "description": "A dark and intense superhero thriller featuring Batman's fight against the Joker."
+  },
+  {
+    "_id": {"$oid": "66db717c9116cedb152710be"},
+    "title": "Interstellar",
+    "releaseYear": 2014,
+    "genre": {"name": "Sci-Fi", "description": "Space exploration movie"},
+    "director": {"name": "Christopher Nolan", "birthYear": 1970, "bio": "British-American director known for his complex storytelling and visually striking films."},
+    "rating": 8.6,
+    "description": "A visually stunning journey through space and time, exploring love, survival, and destiny."
+  },
+  {
+    "_id": {"$oid": "66db717c9116cedb152710bf"},
+    "title": "Parasite",
+    "releaseYear": 2019,
+    "genre": {"name": "Drama", "description": "Social thriller"},
+    "director": {"name": "Bong Joon Ho", "birthYear": 1969, "bio": "South Korean filmmaker known for blending genres and exploring social issues."},
+    "rating": 8.6,
+    "description": "A darkly comedic thriller about class struggles, where a poor family cons their way into a wealthy household with unexpected consequences."
+  },
+  {
+    "_id": {"$oid": "66db717c9116cedb152710c0"},
+    "title": "Snowpiercer",
+    "releaseYear": 2013,
+    "genre": {"name": "Sci-Fi", "description": "Post-apocalyptic thriller"},
+    "director": {"name": "Bong Joon Ho", "birthYear": 1969, "bio": "South Korean filmmaker known for blending genres and exploring social issues."},
+    "rating": 7.1,
+    "description": "In a dystopian future, the last survivors of humanity travel aboard a constantly moving train, with a brutal class system in place."
+  },
+  {
+    "_id": {"$oid": "66db717c9116cedb152710c1"},
+    "title": "The Matrix",
+    "releaseYear": 1999,
+    "genre": {"name": "Sci-Fi", "description": "Cyberpunk action"},
+    "director": {"name": "Wachowski Brothers", "birthYear": 1965, "bio": "Filmmakers famous for their groundbreaking work in science fiction, particularly The Matrix series."},
+    "rating": 8.7,
+    "description": "A hacker discovers the shocking truth about his reality in this cyberpunk action masterpiece."
+  },
+  {
+    "_id": {"$oid": "66db717c9116cedb152710c2"},
+    "title": "The Matrix Reloaded",
+    "releaseYear": 2003,
+    "genre": {"name": "Sci-Fi", "description": "Cyberpunk action sequel"},
+    "director": {"name": "Wachowski Brothers", "birthYear": 1965, "bio": "Filmmakers famous for their groundbreaking work in science fiction, particularly The Matrix series."},
+    "rating": 7.2,
+    "description": "The saga continues as Neo and his allies fight to save humanity from the machines."
+  },
+  {
+    "_id": {"$oid": "66db717c9116cedb152710c3"},
+    "title": "Whiplash",
+    "releaseYear": 2014,
+    "genre": {"name": "Drama", "description": "Music and ambition"},
+    "director": {"name": "Damien Chazelle", "birthYear": 1985, "bio": "American filmmaker known for directing award-winning musical dramas such as 'Whiplash' and 'La La Land'."},
+    "rating": 8.5,
+    "description": "A young drummer's ambition clashes with his instructor's ruthlessness in this intense psychological drama."
+  },
+  {
+    "_id": {"$oid": "66db717c9116cedb152710c4"},
+    "title": "La La Land",
+    "releaseYear": 2016,
+    "genre": {"name": "Romance", "description": "Musical romance"},
+    "director": {"name": "Damien Chazelle", "birthYear": 1985, "bio": "American filmmaker known for directing award-winning musical dramas such as 'Whiplash' and 'La La Land'."},
+    "rating": 8,
+    "description": "A romantic musical about the challenges of pursuing love and dreams in modern-day Los Angeles."
+  },
+  {
+    "_id": {"$oid": "66db717c9116cedb152710c5"},
+    "title": "Mad Max: Fury Road",
+    "releaseYear": 2015,
+    "genre": {"name": "Action", "description": "Post-apocalyptic action"},
+    "director": {"name": "George Miller", "birthYear": 1945, "bio": "Australian director known for creating the Mad Max franchise and directing films across genres."},
+    "rating": 8.1,
+    "description": "In a post-apocalyptic wasteland, a woman rebels against a tyrannical ruler in pursuit of freedom."
+  }
+]

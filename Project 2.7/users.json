@@ -1,0 +1,4 @@
+{"_id":{"$oid":"66dd216d9116cedb152710d1"},"name":"Jane Smith","email":"janesmith@example.com","birthday":{"$date":"1990-05-12T00:00:00Z"},"favoriteMovies":[{"$oid":"66db717c9116cedb152710bf"},{"$oid":"66db717c9116cedb152710bd"}]}
+{"_id":{"$oid":"66dd216d9116cedb152710d2"},"name":"Alice Johnson","email":"alicej@example.com","birthday":{"$date":"1992-07-23T00:00:00Z"},"favoriteMovies":[{"$oid":"66db717c9116cedb152710c0"}]}
+{"_id":{"$oid":"66dd216d9116cedb152710d3"},"name":"Robert Brown","email":"robertb@example.com","birthday":{"$date":"1988-11-03T00:00:00Z"},"favoriteMovies":[{"$oid":"66db717c9116cedb152710c1"}]}
+{"_id":{"$oid":"66dd216d9116cedb152710d4"},"name":"Emily White","email":"emilyw@example.com","birthday":{"$date":"1995-09-14T00:00:00Z"},"favoriteMovies":[{"$oid":"66db717c9116cedb152710c3"},{"$oid":"66db717c9116cedb152710c4"}]}
