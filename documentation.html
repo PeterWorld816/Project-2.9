@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Collection API Documentation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    h1, h2, h3, h4 {
+      color: #333;
+    }
+    pre {
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+      overflow: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    table th, table td {
+      padding: 12px;
+      border: 1px solid #ddd;
+    }
+    nav {
+      background: #333;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Movie Collection API Documentation</h1>
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#get-all-movies">1. Get All Movies</a>
+    <a href="#get-movie-by-title">2. Get Movie by Title</a>
+    <a href="#get-genre-by-name">3. Get Genre by Name</a>
+    <a href="#get-director-by-name">4. Get Director by Name</a>
+    <a href="#register-user">5. Register User</a>
+    <a href="#update-user">6. Update User</a>
+    <a href="#add-favorite-movie">7. Add Movie to Favorites</a>
+    <a href="#remove-favorite-movie">8. Remove Movie from Favorites</a>
+  </nav>
+
+  <h2 id="overview">Overview</h2>
+  <p>This API provides endpoints to interact with a movie collection, including movies, genres, and user information. It uses a MongoDB database for data storage and provides RESTful endpoints for managing movie data and user accounts.</p>
+  <p><strong>Base URL:</strong> `http://localhost:3000`</p>
+
+  <h2 id="get-all-movies">1. Get All Movies</h2>
+  <p><strong>Method:</strong> GET</p>
+  <p><strong>URL Path:</strong> `/movies`</p>
+  <p><strong>Description:</strong> Retrieves all movie records from the database.</p>
+  <p><strong>Parameters:</strong> None</p>
+  <p><strong>Request Body:</strong> None</p>
+  <p><strong>Example Request:</strong></p>
+  <pre><code>GET http://localhost:3000/movies</code></pre>
+  <p><strong>Example Response:</strong></p>
+  <pre><code>[
+  {
+      "genre": {
+          "name": "Thriller",
+          "description": "A genre characterized by excitement, suspense, and high levels of tension."
+      },
+      "director": {
+          "name": "Bong Joon-ho",
+          "bio": "A South Korean film director known for blending genres and social commentary.",
+          "birthYear": 1969,
+          "deathYear": null
+      },
+      "_id": "66edf877c7f419761a2710bc",
+      "title": "Parasite",
+      "description": "A poor family schemes to become employed by a wealthy family.",
+      "imageUrl": "https://example.com/image1.jpg",
+      "featured": true
+  }
+]</code></pre>
+  <p><strong>Status Codes:</strong></p>
+  <ul>
+    <li>200 OK: Successfully returned the movie list.</li>
+    <li>500 Internal Server Error: Error in fetching movies from the database.</li>
+  </ul>
+
+  <h2 id="get-movie-by-title">2. Get Movie by Title</h2>
+  <p><strong>Method:</strong> GET</p>
+  <p><strong>URL Path:</strong> `/movies/:title`</p>
+  <p><strong>Description:</strong> Retrieves a single movie by its title.</p>
+  <p><strong>Parameters:</strong></p>
+  <ul>
+    <li><strong>:title</strong> (string) — Title of the movie.</li>
+  </ul>
+  <p><strong>Request Body:</strong> None</p>
+  <p><strong>Example Request:</strong></p>
+  <pre><code>GET http://localhost:3000/movies/Inception</code></pre>
+  <p><strong>Example Response:</strong></p>
+  <pre><code>
+    {
+      "genre": {
+          "name": "Thriller",
+          "description": "A genre characterized by excitement, suspense, and high levels of tension."
+      },
+      "director": {
+          "name": "Bong Joon-ho",
+          "bio": "A South Korean film director known for blending genres and social commentary.",
+          "birthYear": 1969,
+          "deathYear": null
+      },
+      "_id": "66edf877c7f419761a2710bc",
+      "title": "Parasite",
+      "description": "A poor family schemes to become employed by a wealthy family.",
+      "imageUrl": "https://example.com/image1.jpg",
+      "featured": true
+  }
+</code></pre>
+  <p><strong>Status Codes:</strong></p>
+  <ul>
+    <li>200 OK: Movie found.</li>
+    <li>404 Not Found: Movie with the given title does not exist.</li>
+    <li>500 Internal Server Error: Error in fetching the movie.</li>
+  </ul>
+
+  <h2 id="get-genre-by-name">3. Get Genre by Name</h2>
+  <p><strong>Method:</strong> GET</p>
+  <p><strong>URL Path:</strong> `/genres/:name`</p>
+  <p><strong>Description:</strong> Retrieves data about a specific genre by its name.</p>
+  <p><strong>Parameters:</strong></p>
+  <ul>
+    <li><strong>:name</strong> (string) — Name of the genre (e.g., "Sci-Fi").</li>
+  </ul>
+  <p><strong>Request Body:</strong> None</p>
+  <p><strong>Example Request:</strong></p>
+  <pre><code>GET http://localhost:3000/genres/Sci-Fi</code></pre>
+  <p><strong>Example Response:</strong></p>
+  <pre><code>
+    {
+      "name": "Thriller",
+      "description": "A genre characterized by excitement, suspense, and high levels of tension."
+  }
+  </code></pre>
+  <p><strong>Status Codes:</strong></p>
+  <ul>
+    <li>200 OK: Genre found.</li>
+    <li>404 Not Found: Genre not found.</li>
+    <li>500 Internal Server Error: Error in fetching genre data.</li>
+  </ul>
+
+  <h2 id="get-director-by-name">4. Get Director by Name</h2>
+  <p><strong>Method:</strong> GET</p>
+  <p><strong>URL Path:</strong> `/directors/:name`</p>
+  <p><strong>Description:</strong> Retrieves data about a specific director by name.</p>
+  <p><strong>Parameters:</strong></p>
+  <ul>
+    <li><strong>:name</strong> (string) — Name of the director (e.g., "Christopher Nolan").</li>
+  </ul>
+  <p><strong>Request Body:</strong> None</p>
+  <p><strong>Example Request:</strong></p>
+  <pre><code>GET http://localhost:3000/directors/Christopher Nolan</code></pre>
+  <p><strong>Example Response:</strong></p>
+  <pre><code>
+    {
+      "name": "Bong Joon-ho",
+      "bio": "A South Korean film director known for blending genres and social commentary.",
+      "birthYear": 1969,
+      "deathYear": null
+  }
+  </code></pre>
+  <p><strong>Status Codes:</strong></p>
+  <ul>
+    <li>200 OK: Director found.</li>
+    <li>404 Not Found: Director not found.</li>
+    <li>500 Internal Server Error: Error in fetching director data.</li>
+  </ul>
+
+  <h2 id="register-user">5. Register a New User</h2>
+  <p><strong>Method:</strong> POST</p>
+  <p><strong>URL Path:</strong> `/users/register`</p>
+  <p><strong>Description:</strong> Registers a new user.</p>
+  <p><strong>Request Body:</strong></p>
+  <pre><code>
+    {
+      "username": "johndoe5",
+      "password": "mypassword",
+      "email": "johndoe@example1.com",
+      "dateOfBirth": "1990-01-01"
+    }
+  </code></pre>
+  <p><strong>Status Codes:</strong></p>
+  <ul>
+    <li>201 Created: User registered successfully.</li>
+    <li>400 Bad Request: Validation errors.</li>
+    <li>500 Internal Server Error: Error in registering user.</li>
+  </ul>
+
+  <h2 id="update-user">6. Update User Information</h2>
+  <p><strong>Method:</strong> PUT</p>
+  <p><strong>URL Path:</strong> `/users/:id`</p>
+  <p><strong>Description:</strong> Updates user information.</p>
+  <p><strong>Parameters:</strong></p>
+  <ul>
+    <li><strong>:id</strong> (string) — User ID to update.</li>
+  </ul>
+  <p><strong>Request Body:</strong></p>
+  <pre><code>
+    {
+    "username": "newuser",
+    "password": "securepassword"
+    }
+  </code></pre>
+  <p><strong>Example Response:</strong></p>
+  <pre><code>
+    {
+      "_id": "66f059d6cc0afee78db1f3b1",
+      "username": "newuser",
+      "password": "securepassword",
+      "email": "user@example.com",
+      "dateOfBirth": "1990-01-01T00:00:00.000Z",
+      "favorites": [],
+      "__v": 0
+  }
+  </code></pre>
+  <p><strong>Status Codes:</strong></p>
+  <ul>
+    <li>200 OK: User updated successfully.</li>
+    <li>404 Not Found: User with the given ID does not exist.</li>
+    <li>500 Internal Server Error: Error in updating user.</li>
+  </ul>
+
+  <h2 id="add-favorite-movie">7. Add Movie to Favorites</h2>
+  <p><strong>Method:</strong> POST</p>
+  <p><strong>URL Path:</strong> `/users/:id/favorites`</p>
+  <p><strong>Description:</strong> Adds a movie to the user's favorites.</p>
+  <p><strong>Parameters:</strong></p>
+  <ul>
+    <li><strong>:id</strong> (string) — User ID to update.</li>
+  </ul>
+  <p><strong>Example Response:</strong></p>
+  <pre><code>{
+  "message": "Movie added to favorites"
+}</code></pre>
+  <p><strong>Status Codes:</strong></p>
+  <ul>
+    <li>200 OK: Movie added successfully.</li>
+    <li>404 Not Found: User or movie not found.</li>
+    <li>500 Internal Server Error: Error in adding movie to favorites.</li>
+  </ul>
+
+  <h2 id="remove-favorite-movie">8. Remove Movie from Favorites</h2>
+  <p><strong>Method:</strong> DELETE</p>
+  <p><strong>URL Path:</strong> `/users/:id/favorites/:movieId`</p>
+  <p><strong>Description:</strong> Removes a movie from the user's favorites.</p>
+  <p><strong>Parameters:</strong></p>
+  <ul>
+    <li><strong>:id</strong> (string) — User ID to update.</li>
+    <li><strong>:movieId</strong> (string) — Movie ID to remove from favorites.</li>
+  </ul>
+  <p><strong>Request Body:</strong> None</p>
+  <p><strong>Example Request:</strong></p>
+  <pre><code>DELETE http://localhost:3000/users/66f059d6cc0afee78db1f3b1/favorites/66edf877c7f419761a2710bc</code></pre>
+  <p><strong>Example Response:</strong></p>
+  <pre><code>{
+  "message": "Movie removed from favorites"
+}</code></pre>
+  <p><strong>Status Codes:</strong></p>
+  <ul>
+    <li>200 OK: Movie removed successfully.</li>
+    <li>404 Not Found: User or movie not found.</li>
+    <li>500 Internal Server Error: Error in removing movie from favorites.</li>
+  </ul>
+
+  <h2 id="deregister-user">9. Allow Existing Users to Deregister</h2>
+<p><strong>Method:</strong> DELETE</p>
+<p><strong>URL Path:</strong> `/users/:id`</p>
+<p><strong>Description:</strong> Deletes an existing user account from the database based on the provided user ID.</p>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+  <li><strong>:id</strong> (string) — The unique ID of the user to be deleted.</li>
+</ul>
+
+<p><strong>Request Body:</strong> None</p>
+
+<p><strong>Example Request:</strong></p>
+<pre><code>DELETE http://localhost:3000/users/66f059d6cc0afee78db1f3b1</code></pre>
+
+<p><strong>Example Response:</strong></p>
+<pre><code>{
+  "message": "User deregistered successfully"
+}</code></pre>
+
+<p><strong>Status Codes:</strong></p>
+<ul>
+  <li>200 OK: User was successfully deregistered.</li>
+  <li>404 Not Found: User with the specified ID was not found.</li>
+  <li>500 Internal Server Error: There was an error processing the request.</li>
+</ul>
+
+
+
+</body>
+</html>
