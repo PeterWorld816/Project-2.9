@@ -44,35 +44,6 @@ app.post('/users/register', (req, res) => {
     .catch(err => res.status(400).send('Error: ' + err));
 });
 
-// 10. Allow users to log in
-// 10. Allow users to log in
-app.post('/login', (req, res) => {
-  console.log('Login attempt received');
-  const { username, password } = req.body;
-
-  User.findOne({ username })
-    .then(user => {
-      if (!user) {
-        console.log('User not found');
-        return res.status(404).json({ message: 'User not found.' });
-      }
-
-      const passwordIsValid = bcrypt.compareSync(password, user.password);
-      if (!passwordIsValid) {
-        console.log('Invalid password');
-        return res.status(401).json({ message: 'Invalid password.' });
-      }
-
-      const token = jwt.sign({ id: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
-      console.log('Token generated:', token);
-      return res.status(200).json({ token });
-    })
-    .catch(err => {
-      console.error('Database error:', err);
-      return res.status(500).json({ message: 'Error on the server.' });
-    });
-});
-
 
 // 1. Return a list of ALL movies to the user (JWT protected)
 app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
