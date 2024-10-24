@@ -3,7 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Models = require('./models.js');
-const passport = require('./passport'); // Require the passport instance
+const passport = require('passport');
+require('./passport');
 const bcrypt = require('bcrypt');
 const { Movie, User } = Models;
 
@@ -13,6 +14,7 @@ const PORT = 3000;
 // Middleware
 app.use(bodyParser.json());
 app.use(express.json()); // For parsing JSON requests
+let auth = require('./auth')(app);
 
 // Initialize Passport
 app.use(passport.initialize()); // Initialize passport middleware
