@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const Models = require('./models.js');
+
+const {Movie, User} = Models;
 
 const app = express();
 const PORT = 3000;
@@ -18,35 +21,6 @@ mongoose.connect('mongodb://localhost:27017/movies')
   .catch(err => {
     console.error('MongoDB connection error:', err);
   });
-// Movie Schema
-const movieSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  description: { type: String, required: true },
-  genre: {
-    name: { type: String, required: true },
-    description: { type: String, required: true }
-  },
-  director: {
-    name: { type: String, required: true },
-    bio: { type: String, required: true },
-    birthYear: { type: Number, required: true },
-    deathYear: { type: Number, default: null }
-  },
-  imageUrl: { type: String, required: true },
-  featured: { type: Boolean, required: true }
-});
-
-// User Schema
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true },
-  password: { type: String, required: true },
-  email: { type: String, required: true },
-  dateOfBirth: { type: Date, required: true },
-  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }]
-});
-
-const Movie = mongoose.model('Movie', movieSchema);
-const User = mongoose.model('User', userSchema);
 
 // Routes
 
@@ -131,7 +105,7 @@ app.post('/users/:userId/favorites/:movieId', (req, res) => {
       if (!updatedUser) {
         return res.status(404).send('User not found');
       }
-      res.json(updatedUser); // Respond with the updated user data
+      res.json("Movie added to favorites"); // Respond with the updated user data
     })
     .catch((err) => {
       console.error(err);
