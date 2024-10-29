@@ -6,6 +6,7 @@ const Models = require('./models.js');
 const passport = require('passport');
 require('./passport');
 const bcrypt = require('bcrypt');
+const { check, validationResult } = require('express-validator');
 const { Movie, User } = Models;
 
 const app = express();
@@ -14,6 +15,8 @@ const PORT = 3000;
 // Middleware
 app.use(bodyParser.json());
 app.use(express.json()); // For parsing JSON requests
+const cors = require('cors');
+app.use(cors());
 let auth = require('./auth')(app);
 
 // Initialize Passport
@@ -151,7 +154,36 @@ app.delete('/users/:id', passport.authenticate('jwt', { session: false }), (req,
     .catch(err => res.status(500).send('Error: ' + err));
 });
 
+app.post('/users', async (req, res) => {
+  let hashedPassword = Users.hashPassword(req.body.Password);
+  await Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
+    .then((user) => {
+      if (user) {
+      //If the user is found, send a response that it already exists
+        return res.status(400).send(req.body.Username + ' already exists');
+      } else {
+        Users
+          .create({
+            Username: req.body.Username,
+            Password: hashedPassword,
+            Email: req.body.Email,
+            Birthday: req.body.Birthday
+          })
+          .then((user) => { res.status(201).json(user) })
+          .catch((error) => {
+            console.error(error);
+            res.status(500).send('Error: ' + error);
+          });
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
+});
+
 // Start Server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0',() => {
+ console.log('Listening on Port ' + port);
 });
